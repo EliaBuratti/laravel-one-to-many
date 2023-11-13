@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreProjectRequest extends FormRequest
+class StoreTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,15 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:3', Rule::unique('projects')->ignore($this->project),  'max:100'],
-            'description' => 'required|min:3|max:5000',
-            'cover_image' => 'required|image|max:600',
-            'skills' => 'required|min:3|max:5000',
-            'project_link' => 'required|url|max:255',
-            'github_link' => 'required|url|max:255',
+            'name' => ['required', Rule::unique('types')->ignore($this->type)],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name' => 'The :attribute type already exisist.',
+            'name.required' => 'This field was not empty',
         ];
     }
 }
