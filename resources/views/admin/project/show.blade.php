@@ -44,6 +44,9 @@
                             </svg>
                         </a>
                     </li>
+                    <li class=" list-group-item">
+                        <strong>Type: </strong> {{ $project->type ? $project->type->name : 'Nothing type selected' }}
+                    </li>
                 </ul>
             </div>
         </div>

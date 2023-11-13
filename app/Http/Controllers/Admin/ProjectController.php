@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +22,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = DB::table('projects')->orderByDesc('id')->paginate(15);
-        return view('admin.project.index', compact('projects'));
+        $types = Type::all();
+
+        return view('admin.project.index', compact('projects', 'types'));
     }
 
     /**
@@ -29,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        $types = Type::all();
+        return view('admin.project.create', compact('types'));
     }
 
     /**
@@ -60,7 +64,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.project.show', compact('project'));
+        $types = Type::all();
+
+        return view('admin.project.show', compact('project', 'types'));
     }
 
     /**
@@ -68,8 +74,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
-        return view('admin.project.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.project.edit', compact('project', 'types'));
     }
 
     /**

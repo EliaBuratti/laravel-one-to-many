@@ -25,6 +25,7 @@
                             <th scope="col">Id</th>
                             <th scope="col">Image</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Type</th>
                             <th scope="col">Handle</th>
                         </tr>
                     </thead>
@@ -80,6 +81,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                </td>
+                                <td>
+                                    <strong>Type: </strong>
+                                    {{ $project->type ? $project->type->name : 'Nothing type selected' }}
                                 </td>
                             </tr>
                         @empty
