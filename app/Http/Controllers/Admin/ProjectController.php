@@ -80,10 +80,10 @@ class ProjectController extends Controller
         $validated = $request->validated();
         $data = $request->all();
         if ($request->has('cover_image')) {
-            $img_path = Storage::put('cover_image', $request->cover_image);
+            $img_path = Storage::put('cover_images', $request->cover_image);
 
-            if (is_null($project->cover_image) && Storage::fileExists($project->cover_image)) {
-
+            if (!is_null($project->cover_image) && Storage::fileExists($project->cover_image)) {
+                //dd($project->cover_image);
                 Storage::delete($project->cover_image);
             }
 
