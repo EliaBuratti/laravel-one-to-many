@@ -38,6 +38,10 @@
                                         alt="{{ $project->title }}">
                                 </td>
                                 <td>{{ $project->title }}</td>
+
+                                <td>
+                                    {{ $project->type ? $project->type->name : 'Nothing type selected' }}
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.project.show', $project->slug) }}"
                                         class="btn btn-primary">View</a>
@@ -81,10 +85,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <strong>Type: </strong>
-                                    {{ $project->type ? $project->type->name : 'Nothing type selected' }}
                                 </td>
                             </tr>
                         @empty

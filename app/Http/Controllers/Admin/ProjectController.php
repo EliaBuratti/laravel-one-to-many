@@ -19,12 +19,12 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Project $project)
     {
-        $projects = DB::table('projects')->orderByDesc('id')->paginate(15);
         $types = Type::all();
+        $projects = Project::orderByDesc('id')->paginate(15);
 
-        return view('admin.project.index', compact('projects', 'types'));
+        return view('admin.project.index', compact('types', 'projects'));
     }
 
     /**
