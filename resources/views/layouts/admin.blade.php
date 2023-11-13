@@ -97,6 +97,12 @@
                                         <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Project
                                     </a>
                                 </li>
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.type.index') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Type
+                                    </a>
+                                </li>
 
                             </ul>
 

@@ -17,55 +17,43 @@
 
             <div class="comic-list mt-3">
                 <button class="btn btn-primary">
-                    <a class="nav-link" href="{{ route('admin.project.create') }}">Add project</a>
+                    <a class="nav-link" href="{{ route('admin.type.create') }}">New type</a>
                 </button>
                 <table class="table my-4 border">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Handle</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($projects as $project)
+                        @forelse ($types as $type)
                             <tr class="table-primary">
-                                <th scope="row">{{ $project->id }}</th>
+                                <th scope="row">{{ $type->id }}</th>
+                                <td>{{ $type->name }}</td>
                                 <td>
-                                    <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
-                                        alt="{{ $project->title }}">
-                                </td>
-                                <td>{{ $project->title }}</td>
-
-                                <td>
-                                    {{ $project->type ? $project->type->name : 'Nothing type selected' }}
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.project.show', $project->slug) }}"
-                                        class="btn btn-primary">View</a>
-                                    <a href="{{ route('admin.project.edit', $project->slug) }}"
-                                        class="btn btn-secondary">Edit</a>
+                                    <a href="{{ route('admin.type.show', $type->slug) }}" class="btn btn-primary">View</a>
+                                    <a href="{{ route('admin.type.edit', $type->slug) }}" class="btn btn-secondary">Edit</a>
 
 
                                     <!-- Modal trigger button -->
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#modalId-{{ $project->id }}">
+                                        data-bs-target="#modalId-{{ $type->id }}">
                                         Delete
                                     </button>
 
                                     <!-- Modal Body -->
                                     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                    <div class="modal fade" id="modalId-{{ $project->id }}" tabindex="-1"
+                                    <div class="modal fade" id="modalId-{{ $type->id }}" tabindex="-1"
                                         data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                        aria-labelledby="modalTitle-{{ $project->id }}" aria-hidden="true">
+                                        aria-labelledby="modalTitle-{{ $type->id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                             role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalTitleId-{{ $project->id }}">
-                                                        {{ $project->id }}</h5>
+                                                    <h5 class="modal-title" id="modalTitleId-{{ $type->id }}">
+                                                        {{ $type->id }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -75,7 +63,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">No!</button>
-                                                    <form action="{{ route('admin.project.destroy', $project->slug) }}"
+                                                    <form action="{{ route('admin.type.destroy', $type->slug) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -97,7 +85,7 @@
 
                     </tbody>
                 </table>
-                {{ $projects->links('pagination::bootstrap-5') }}
+                {{ $types->links('pagination::bootstrap-5') }}
             </div>
 
 
